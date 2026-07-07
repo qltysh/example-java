@@ -2,8 +2,7 @@ config_version = "0"
 
 [[source]]
 name = "default"
-repository = "https://github.com/qltysh/qlty.git"
-tag = "v0.447.0"
+default = true
 
 [[plugin]]
 name = "actionlint"
@@ -34,3 +33,15 @@ name = "trufflehog"
 
 [[plugin]]
 name = "yamllint"
+
+[[triage]]
+match.file_patterns = [".github/workflows/*"]
+match.rules = ["yamllint:line-length"]
+set.ignored = true
+
+# Prettier normalizes inline comments to one leading space, which conflicts
+# with yamllint's default two-space requirement
+[[triage]]
+match.file_patterns = [".github/workflows/*"]
+match.rules = ["yamllint:comments"]
+set.ignored = true
